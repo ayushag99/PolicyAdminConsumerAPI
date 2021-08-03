@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PolicyAdmin.ConsumerMS.API.Interface;
 using PolicyAdmin.ConsumerMS.API.Models;
@@ -14,6 +15,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
 {
     [Route("api/[controller]/[Action]")]
     [ApiController]
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     public class ConsumerController : ControllerBase
     {
         private readonly IConsumerRepository _repository;

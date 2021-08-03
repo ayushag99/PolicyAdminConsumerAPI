@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PolicyAdmin.ConsumerMS.API.Data;
 using PolicyAdmin.ConsumerMS.API.DataLayer;
@@ -15,6 +17,7 @@ using PolicyAdmin.ConsumerMS.API.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PolicyAdmin.ConsumerMS.API
@@ -41,7 +44,27 @@ namespace PolicyAdmin.ConsumerMS.API
             {
                 services.AddDbContext<ConsumerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
             }
-            
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"]))
+                    };
+                });
+            services.AddCors(c => c.AddPolicy("POD_1_Policy", builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            }));
 
             services.AddTransient<IConsumerDBService, ConsumerDBService>();
             services.AddTransient<IConsumerRepository, ConsumerRepository>();
@@ -69,11 +92,14 @@ namespace PolicyAdmin.ConsumerMS.API
                 var context = scopeeee.ServiceProvider.GetRequiredService<ConsumerContext>();
                 PropertyMasterDataGenerator.Initialize(context);
                 businessMasterDataGenerator.Initialize(context);
+                BusinessDataGenerator.Initialize(context);
+                ConsumerDataGenerator.Initialize(context);
+                PropertyDataGenerator.Initialize(context);
 
             }
 
             app.UseRouting();
-
+            app.UseCors("POD_1_Policy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

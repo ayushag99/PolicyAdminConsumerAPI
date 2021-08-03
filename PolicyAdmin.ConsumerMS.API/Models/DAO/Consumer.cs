@@ -21,6 +21,7 @@ namespace PolicyAdmin.ConsumerMS.API.Models.DAO
         public string ConsumerEmail { get; set; }
 
         [Required]
+        
         public string ConsumerPan { get; set; }
 
         [Required]

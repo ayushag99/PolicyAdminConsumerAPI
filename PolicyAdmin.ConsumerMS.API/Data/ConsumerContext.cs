@@ -19,7 +19,7 @@ namespace PolicyAdmin.ConsumerMS.API.Data
         }
 
         public DbSet<Consumer> Consumers { get; set; }
-        public DbSet<Consumer> Businesses { get; set; }
+        public DbSet<Business> Businesses { get; set; }
         public DbSet<BusinessMaster> BusinessesMaster { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyMaster> PropertiesMaster { get; set; }

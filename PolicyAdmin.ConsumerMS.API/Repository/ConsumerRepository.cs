@@ -112,7 +112,7 @@ namespace PolicyAdmin.ConsumerMS.API.Repository
             
             
             if (!( propertyMaster.PropertyAgeMin <= property.PropertyAge && property.PropertyAge <= propertyMaster.PropertyAgeMax))
-                return new Status { Success = false, Message = $"Age of Property should be between {propertyMaster.MinimumArea} and {propertyMaster.MaximumArea}" };
+                return new Status { Success = false, Message = $"Age of Property should be between {propertyMaster.PropertyAgeMin} and {propertyMaster.PropertyAgeMax}" };
 
             return new Status { Success = true };
         }
