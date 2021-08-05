@@ -98,7 +98,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
                 Status Result = await _repository.CreateBusinessProperty(property);
                 if (!Result.Success)
                 {
-                    Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    Response.StatusCode = StatusCodes.Status400BadRequest;
                     return Result;
                 }
                 Response.StatusCode = StatusCodes.Status200OK;

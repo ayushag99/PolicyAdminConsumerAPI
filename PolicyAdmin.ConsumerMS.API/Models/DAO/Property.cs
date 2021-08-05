@@ -10,8 +10,8 @@ namespace PolicyAdmin.ConsumerMS.API.Models.DAO
     public class Property
     {
         public int Id { get; set; }
-        public int BusinesssId { get; set; }
-        [ForeignKey("BusinesssId")]
+        public int BusinessId { get; set; }
+        [ForeignKey("BusinessId")]
         public Business Business { get; set; }
         public PropertyType PropertyType { get; set; }
         public double BuildingSqFt { get; set; }

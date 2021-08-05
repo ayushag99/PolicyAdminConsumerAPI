@@ -31,7 +31,7 @@ namespace PolicyAdmin.ConsumerMS.API.DataLayer
                 new Property
                 {
                     Id=1,
-                    BusinesssId=1,
+                    BusinessId=1,
                     PropertyType = PropertyType.Building,
                     BuildingSqFt = 1500,
                     Storeys = 10,
