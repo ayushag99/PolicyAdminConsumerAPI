@@ -38,6 +38,18 @@ namespace PolicyAdmin.ConsumerMS.API.DataLayer
                     PropertyAge = 20,
                     CostOfAsset = 100000000,
                     SalvageValue = 80000000
+                },
+
+                 new Property
+                {
+                    Id=2,
+                    BusinessId=2,
+                    PropertyType = PropertyType.Building,
+                    BuildingSqFt = 3500,
+                    Storeys = 8,
+                    PropertyAge = 22,
+                    CostOfAsset = 135000000,
+                    SalvageValue = 60000000
                 }
             };
         }

@@ -28,8 +28,9 @@ namespace PolicyAdmin.ConsumerMS.API.DataLayer
             private static List<Business> getBusinessData()
         {
             return new List<Business>() {
-                new Business{ Id=1, BusinessName="The Profit Company",BusinessType=BusinessType.SoleProprietorship, AnnualTurnOver=1200000,CapitalInvested=2000000,TotalEmployees=50,BusinesIncorporation=new DateTime(2015,05,09,9,15,0)}
-                
+                new Business{ Id=1, BusinessName="The Profit Company",BusinessType=BusinessType.SoleProprietorship, AnnualTurnOver=1200000,CapitalInvested=2000000,TotalEmployees=50,BusinesIncorporation=new DateTime(2015,05,09,9,15,0)},
+                new Business{ Id=2, BusinessName="The Boring Company",BusinessType=BusinessType.NonProfit, AnnualTurnOver=2250000,CapitalInvested=3870000,TotalEmployees=160,BusinesIncorporation=new DateTime(2017,08,01,9,15,0)}
+
             };
         }
     }

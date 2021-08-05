@@ -28,7 +28,9 @@ namespace PolicyAdmin.ConsumerMS.API.DataLayer
             private static List<Consumer> getConsuemrData()
         {
             return new List<Consumer>() {
-                new Consumer{Id=1, ConsumerName="Akshay Jain", ConsumerDOB = new DateTime(1999,10,10),ConsumerEmail="Akshay@gmail.com",ConsumerPan="ABCDE1234F", AgentId="1", BusinessId=1}
+                new Consumer{Id=1, ConsumerName="Akshay Jain", ConsumerDOB = new DateTime(1999,10,10),ConsumerEmail="Akshay@gmail.com",ConsumerPan="ABCDE1234F", AgentId="ayush", BusinessId=1},
+                 new Consumer{Id=2, ConsumerName="John Doe", ConsumerDOB = new DateTime(1990,04,08),ConsumerEmail="John@gmail.com",ConsumerPan="ZYXW5678AF", AgentId="anand", BusinessId=2}
+
             };
         }
     }
