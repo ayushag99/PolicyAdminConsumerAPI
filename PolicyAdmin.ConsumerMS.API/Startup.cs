@@ -35,15 +35,15 @@ namespace PolicyAdmin.ConsumerMS.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            if (Configuration.GetValue<bool>("InMemoryDatabase"))
-            {
-                services.AddDbContext<ConsumerContext>(options => options.UseInMemoryDatabase("PolicyAdmin_Quotes"));
+            //if (Configuration.GetValue<bool>("InMemoryDatabase"))
+            //{
+            //    services.AddDbContext<ConsumerContext>(options => options.UseInMemoryDatabase("PolicyAdmin_Quotes"));
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 services.AddDbContext<ConsumerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
-            }
+            //}
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>

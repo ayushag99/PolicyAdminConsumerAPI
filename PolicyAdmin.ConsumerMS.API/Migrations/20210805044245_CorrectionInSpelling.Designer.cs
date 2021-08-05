@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PolicyAdmin.ConsumerMS.API.Data;
 
 namespace PolicyAdmin.ConsumerMS.API.Migrations
 {
     [DbContext(typeof(ConsumerContext))]
-    partial class ConsumerContextModelSnapshot : ModelSnapshot
+    [Migration("20210805044245_CorrectionInSpelling")]
+    partial class CorrectionInSpelling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
