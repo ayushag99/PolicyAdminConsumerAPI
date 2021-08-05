@@ -29,12 +29,12 @@ namespace PolicyAdmin.ConsumerMS.API.DataLayer
         {
             return new List<BusinessMaster>() {
                 new BusinessMaster { Id=1, BusinessType=BusinessType.SoleProprietorship, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
-                new BusinessMaster { Id=2, BusinessType=BusinessType.Partnership, MinimumAnnualTurnOver=2400000, MinimumCapitalInvested=3000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=20},
-                new BusinessMaster { Id=3, BusinessType=BusinessType.LimitedPartnership, MinimumAnnualTurnOver=4000000, MinimumCapitalInvested=5000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=30},
-                new BusinessMaster { Id=4, BusinessType=BusinessType.LimitedLiabilityCompany, MinimumAnnualTurnOver=5000000, MinimumCapitalInvested=8000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=40},
-                new BusinessMaster { Id=5, BusinessType=BusinessType.Corporation,  MinimumAnnualTurnOver=7000000, MinimumCapitalInvested=10000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=80},
-                new BusinessMaster { Id=6, BusinessType=BusinessType.NonProfit, MinimumAnnualTurnOver=1000000, MinimumCapitalInvested=1000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=20},
-                new BusinessMaster { Id=7, BusinessType=BusinessType.Cooperative, MinimumAnnualTurnOver=1000000, MinimumCapitalInvested=1000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=20},
+                new BusinessMaster { Id=2, BusinessType=BusinessType.Partnership, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
+                new BusinessMaster { Id=3, BusinessType=BusinessType.LimitedPartnership, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
+                new BusinessMaster { Id=4, BusinessType=BusinessType.LimitedLiabilityCompany, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
+                new BusinessMaster { Id=5, BusinessType=BusinessType.Corporation,  MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
+                new BusinessMaster { Id=6, BusinessType=BusinessType.NonProfit, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
+                new BusinessMaster { Id=7, BusinessType=BusinessType.Cooperative, MinimumAnnualTurnOver=1200000, MinimumCapitalInvested=2000000, MinimumBusinessAgeInYears=2, MinimumTotalEmployees=10},
 
             };
         }
