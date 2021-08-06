@@ -15,7 +15,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
 {
     [Route("api/[controller]/[Action]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class ConsumerController : ControllerBase
     {
         private readonly IConsumerRepository _repository;
