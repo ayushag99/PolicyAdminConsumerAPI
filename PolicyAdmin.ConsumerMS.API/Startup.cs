@@ -24,9 +24,12 @@ namespace PolicyAdmin.ConsumerMS.API
 {
     public class Startup
     {
+        static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger("RollingFile");
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _log4net.Info("Initializing Program");
         }
 
         public IConfiguration Configuration { get; }
@@ -38,11 +41,19 @@ namespace PolicyAdmin.ConsumerMS.API
             if (Configuration.GetValue<bool>("InMemoryDatabase"))
             {
                 services.AddDbContext<ConsumerContext>(options => options.UseInMemoryDatabase("PolicyAdmin_Quotes"));
-
+                _log4net.Info("Initialized In-Memory DB");
             }
             else
             {
-                services.AddDbContext<ConsumerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
+                try
+                {
+                    services.AddDbContext<ConsumerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
+                    _log4net.Info("Initialized SQL DB");
+                }catch(Exception e)
+                {
+                    _log4net.Error("Error In Connection to Databse : "+e.Message);
+                }
+                
             }
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -86,15 +97,26 @@ namespace PolicyAdmin.ConsumerMS.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PolicyAdmin.ConsumerMS.API v1"));
             }
-            if (Configuration.GetValue<bool>("inmemorydatabase"))
+
+            if (Configuration.GetValue<bool>("InMemoryDatabase"))
             {
-                var scopeeee = app.ApplicationServices.CreateScope();
-                var context = scopeeee.ServiceProvider.GetRequiredService<ConsumerContext>();
-                PropertyMasterDataGenerator.Initialize(context);
-                businessMasterDataGenerator.Initialize(context);
-                BusinessDataGenerator.Initialize(context);
-                ConsumerDataGenerator.Initialize(context);
-                PropertyDataGenerator.Initialize(context);
+                try
+                {
+                    _log4net.Info("Data Seding for In-Memory DB Started");
+                    var scopeeee = app.ApplicationServices.CreateScope();
+                    var context = scopeeee.ServiceProvider.GetRequiredService<ConsumerContext>();
+                    PropertyMasterDataGenerator.Initialize(context);
+                    businessMasterDataGenerator.Initialize(context);
+                    BusinessDataGenerator.Initialize(context);
+                    ConsumerDataGenerator.Initialize(context);
+                    PropertyDataGenerator.Initialize(context);
+                }
+                catch (Exception e)
+                {
+                    _log4net.Error("Exception in Data Seeding: " + e.Message);
+
+                }
+
 
             }
 

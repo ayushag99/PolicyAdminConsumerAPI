@@ -19,6 +19,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
     public class ConsumerController : ControllerBase
     {
         private readonly IConsumerRepository _repository;
+        static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger("RollingFile");
 
         public ConsumerController(IConsumerRepository repository)
         {
@@ -31,6 +32,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Status>> CreateConsumerBusiness([FromBody] Consumer consumer)
         {
+   
             try
             {
                 if (!ModelState.IsValid)
@@ -50,6 +52,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             catch (Exception e)
             {
                 Response.StatusCode = StatusCodes.Status500InternalServerError;
+                _log4net.Error(e.Message);
                 return new Status { Success = false, Message = "Database Error"};
             }
         }
@@ -77,6 +80,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             catch (Exception e)
             {
                 Response.StatusCode = StatusCodes.Status500InternalServerError;
+                _log4net.Error(e.Message);
                 return new Status { Success = false, Message = "Database Error" };
             }
         }
@@ -107,6 +111,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             catch (Exception e)
             {
                 Response.StatusCode = StatusCodes.Status500InternalServerError;
+                _log4net.Error(e.Message);
                 return new Status { Success = false, Message = "Database Error" };
             }
         }
@@ -141,6 +146,7 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             catch (Exception e)
             {
                 Response.StatusCode = StatusCodes.Status500InternalServerError;
+                _log4net.Error(e.Message);
                 return new Status { Success = false, Message = "Database Error" };
             }
         }
@@ -153,8 +159,9 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             {
                 return Ok(await _repository.ViewConsumerBusiness(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _log4net.Error(e.Message);
                 return new ObjectResult("Database error") { StatusCode = 500 };
             }
         }
@@ -167,8 +174,9 @@ namespace PolicyAdmin.ConsumerMS.API.Controllers
             {
                 return Ok(await _repository.ViewBusinessProperty(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _log4net.Error(e.Message);
                 return new ObjectResult("Database error") { StatusCode = 500 };
             }
         }

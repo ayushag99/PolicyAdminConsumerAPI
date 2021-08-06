@@ -23,7 +23,6 @@ namespace PolicyAdmin.ConsumerMS.API.Repository
         {
             BusinessMaster businessMaster = _provider.GetBusinessMaster(consumer.Business.BusinessType);
             Status validation = ValidateBusinessData(consumer.Business, businessMaster);
-
             if (!validation.Success)
                 return validation;
 
